@@ -1,0 +1,89 @@
+@import url("https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Poppins:wght@400;500&display=swap");
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  overflow-x: hidden;
+  cursor: url(../img/cursor.svg), auto;
+}
+
+.weather-app {
+  min-height: 100vh;
+  background-image: url(../img/cloudy.jpg);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  color: #fff;
+  position: relative;
+  transition: 500ms;
+  opacity: 1;
+}
+
+.container {
+  max-width: 800px;
+  width: 100%;
+  background-color: rgba(110, 110, 110, 0.25);
+  color: #fff;
+  border-radius: 25px;
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+
+h1,
+h2 {
+  font-family: "Bebas Neue", sans-serif;
+}
+
+p,
+span {
+  font-family: "Poppins", sans-serif;
+  font-weight: 500;
+}
+
+.day_info .content {
+  display: flex;
+  justify-content: space-between;
+  padding: 0.4rem 0;
+}
+
+.day_info .content .title {
+  font-weight: 600;
+}
+
+.container .list_content ul {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  list-style-type: none;
+  margin: 3rem 0rem;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.35);
+}
+
+.container .list_content ul li {
+  padding: 0.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border-radius: 1rem;
+  transition: all 0.3s ease-in;
+}
+
+.container .list_content ul li:hover {
+  transform: scale(1.1);
+  background-color: #808588;
+  color: #0e1111;
+  box-shadow: 0 5px 15px #828282;
+  cursor: pointer;
+}
+
+.container .list_content ul li svg.owm-weather-icon {
+  width: 50%;
+  object-fit: cover;
+}
