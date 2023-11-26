@@ -14,8 +14,9 @@ document.addEventListener("DOMContentLoaded", function () {
       getWeatherData(location).then(() => {
         getWeatherForecast(location);
       });
+      searchInput.value = "";
     } else {
-      console.error("Location cannot be empty");
+      alert("Location cannot be empty");
     }
   });
 
@@ -56,7 +57,7 @@ document.addEventListener("DOMContentLoaded", function () {
         console.error("Wind speed data not available");
       }
     } else {
-      console.error("City name not available");
+      alert("City name not available");
     }
   }
 
