@@ -1,0 +1,177 @@
+@import url("https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Poppins:wght@400;500&display=swap");
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  overflow-x: hidden;
+  cursor: url(../img/cursor.svg), auto;
+}
+
+.weather-app {
+  min-height: 100vh;
+  background-image: url(../img/cloudy.jpg);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  color: #fff;
+  position: relative;
+  transition: 500ms;
+  opacity: 1;
+}
+
+.container {
+  max-width: 800px;
+  width: 100%;
+  background-color: rgba(110, 110, 110, 0.25);
+  color: #fff;
+  border-radius: 25px;
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+
+h1 {
+  font-family: "Bebas Neue", sans-serif;
+  position: relative;
+}
+
+h1:before {
+  content: "";
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  height: 5px;
+  width: 100%;
+  transition: 0.5s;
+  border-radius: 70px;
+  transform: scaleX(0);
+  background: #808588;
+}
+
+h1:hover::before {
+  transform: scaleX(0.5);
+}
+
+h2 {
+  font-family: "Bebas Neue", sans-serif;
+}
+
+p,
+span {
+  font-family: "Poppins", sans-serif;
+  font-weight: 500;
+}
+
+.day_info .content {
+  display: flex;
+  justify-content: space-between;
+  padding: 0.4rem 0;
+}
+
+.day_info .content .title {
+  font-weight: 600;
+}
+
+.container .list_content ul {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  list-style-type: none;
+  margin: 3rem 0rem;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.35);
+}
+
+.container .list_content ul li {
+  padding: 0.3rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border-radius: 1rem;
+  transition: all 0.3s ease-in;
+  justify-content: center;
+}
+
+.container .list_content ul li:hover {
+  transform: scale(1.1);
+  background-color: #808588;
+  color: #0e1111;
+  box-shadow: 0 5px 15px #828282;
+  cursor: url(../img/cursor-2.svg), auto;
+}
+
+.container .list_content ul li .day_name,
+.container .list_content ul li .day_icon,
+.container .list_content ul li .day_temps {
+  width: 100%;
+  object-fit: cover;
+}
+
+/* memberikan efek cuaca */
+.days {
+  transform: translateY(-10px);
+  transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+.days.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+button#button-search {
+  cursor: url(../img/cursor-2.svg), auto;
+  font-family: "Poppins", sans-serif;
+  transition: color 0.7s linear;
+  color: #fff;
+}
+
+button#button-search::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background: #808588;
+  z-index: -1;
+  transition: transform 0.5s;
+  transform-origin: 0 0;
+  transition-timing-function: cubic-bezier(0.5, 1.6, 0.4, 0.7);
+  transform: scaleX(0);
+}
+
+button#button-search:hover::before {
+  transform: scaleX(1);
+}
+
+@media only screen and (max-width: 390px) {
+  .container {
+    width: 90% !important;
+    height: 97% !important;
+    overflow: hidden;
+  }
+  .wether {
+    display: flex;
+    position: relative;
+    top: -40px;
+    margin-top: 0;
+  }
+}
+@media only screen and (max-width: 360px) {
+  .container {
+    width: 90% !important;
+    height: 97% !important;
+    overflow: hidden;
+  }
+  .wether {
+    display: flex;
+    position: relative;
+    top: -40px;
+    margin-top: 0;
+  }
+}
