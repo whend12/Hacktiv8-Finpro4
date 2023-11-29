@@ -13,7 +13,6 @@ document.addEventListener("DOMContentLoaded", function () {
     const location = searchInput.value;
     if (location.trim() !== "") {
       getWeatherData(location).then(() => {
-        setInterval(() => updateDayDateAndTime(), 1000);
         getWeatherForecast(location);
       });
       searchInput.value = "";
@@ -29,14 +28,19 @@ document.addEventListener("DOMContentLoaded", function () {
     try {
       const response = await fetch(apiUrl);
       const data = await response.json();
-      updateWeatherUI(data);
-      updateDayDateAndTime();
+      if (response.ok) {
+        updateWeatherUI(data);
+        updateDayDateAndTime();
 
-      // efek hari cuaca ada kembali
-      const daysList = document.querySelector(".days");
-      daysList.classList.remove("d-none");
-      daysList.classList.add("visible");
-      // done
+        // memberikan efek hari cuaca ada kembali
+        const daysList = document.querySelector(".days");
+        daysList.classList.remove("d-none");
+        daysList.classList.add("visible");
+        // done
+      } else {
+        updateWeatherUI({});
+        console.error("The city does not exist");
+      }
     } catch (error) {
       console.error("Error fetching weather data:", error);
     }
@@ -61,10 +65,12 @@ document.addEventListener("DOMContentLoaded", function () {
       if (data.wind && data.wind.speed) {
         windSpeed.textContent = data.wind.speed + " Km/h";
       } else {
+        cityName.textContent = "";
+        condition.textContent = "";
+        temperature.textContent = "";
+        windSpeed.textContent = "";
         console.error("Wind speed data not available");
       }
-    } else {
-      alert("City name not available");
     }
   }
 
@@ -85,6 +91,7 @@ document.addEventListener("DOMContentLoaded", function () {
       })
       .replace("PM", "PM-")
       .replace("AM", "AM-");
+    setInterval(() => updateDayDateAndTime(), 1000);
   }
   updateDayDateAndTime();
 
