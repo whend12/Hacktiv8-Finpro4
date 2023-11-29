@@ -126,7 +126,7 @@ span {
 button#button-search {
   cursor: url(../img/cursor-2.svg), auto;
   font-family: "Poppins", sans-serif;
-  transition: color 0.7s linear;
+  transition: #778899 0.7s linear;
   color: #fff;
 }
 
