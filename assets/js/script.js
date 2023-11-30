@@ -8,6 +8,16 @@ document.addEventListener("DOMContentLoaded", function () {
   const dayElement = document.querySelector(".day");
   const timeElement = document.querySelector(".time");
   const dateElement = document.querySelector(".date");
+  const dayIcons = document.querySelectorAll(".day_icon");
+  const dayTemps = document.querySelectorAll(".day_temps");
+  const dayNames = document.querySelectorAll(".day_name");
+  const messageError = document.querySelector("#error-msg");
+
+  const defaultCity = "Denpasar";
+  searchInput.value = "";
+  getWeatherData(defaultCity).then(() => {
+    getWeatherForecast(defaultCity);
+  });
 
   searchButton.addEventListener("click", function () {
     const location = searchInput.value;
@@ -16,8 +26,10 @@ document.addEventListener("DOMContentLoaded", function () {
         getWeatherForecast(location);
       });
       searchInput.value = "";
+      clearErrorAndForecast(); 
     } else {
-      alert("Location cannot be empty");
+      displayErrorMessage("Location cannot be empty");
+      clearWeatherUI();
     }
   });
 
@@ -39,10 +51,11 @@ document.addEventListener("DOMContentLoaded", function () {
         // done
       } else {
         updateWeatherUI({});
-        console.error("The city does not exist");
+        displayErrorMessage("The city does not exist");
       }
     } catch (error) {
       console.error("Error fetching weather data:", error);
+      displayErrorMessage("Error fetching weather data");
     }
   }
 
@@ -53,25 +66,47 @@ document.addEventListener("DOMContentLoaded", function () {
       if (data.weather && data.weather[0] && data.weather[0].description) {
         condition.textContent = data.weather[0].description;
       } else {
-        console.error("Weather data not available");
+        displayErrorMessage("Weather data not available");
       }
 
       if (data.main && data.main.temp) {
         temperature.textContent = data.main.temp + "°C";
       } else {
-        console.error("Temperature data not available");
+        displayErrorMessage("Temperature data not available");
       }
 
       if (data.wind && data.wind.speed) {
         windSpeed.textContent = data.wind.speed + " Km/h";
       } else {
-        cityName.textContent = "";
-        condition.textContent = "";
-        temperature.textContent = "";
-        windSpeed.textContent = "";
-        console.error("Wind speed data not available");
+        clearWeatherUI();
+        displayErrorMessage("Wind speed data not available");
       }
     }
+  }
+
+  function displayErrorMessage(message) {
+    messageError.innerHTML = message;
+    messageError.style.top = "120%";
+  }
+
+  function clearErrorAndForecast() {
+    messageError.innerHTML = "";
+    messageError.style.top = "-100%";
+    clearWeatherUI();
+  }
+
+  function clearWeatherUI() {
+    cityName.textContent = "";
+    condition.textContent = "";
+    temperature.textContent = "";
+    windSpeed.textContent = "";
+    clearForecastUI();
+  }
+
+  function clearForecastUI() {
+    dayIcons.forEach((icon) => (icon.innerHTML = ""));
+    dayTemps.forEach((temp) => (temp.textContent = ""));
+    dayNames.forEach((name) => (name.textContent = ""));
   }
 
   function updateDayDateAndTime() {
