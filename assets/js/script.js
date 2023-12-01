@@ -26,7 +26,7 @@ document.addEventListener("DOMContentLoaded", function () {
         getWeatherForecast(location);
       });
       searchInput.value = "";
-      clearErrorAndForecast(); 
+      clearErrorAndForecast();
     } else {
       displayErrorMessage("Location cannot be empty");
       clearWeatherUI();
@@ -51,7 +51,15 @@ document.addEventListener("DOMContentLoaded", function () {
         // done
       } else {
         updateWeatherUI({});
-        displayErrorMessage("The city does not exist");
+        var errorMessage = document.getElementById("error-msg");
+        errorMessage.innerHTML =
+          '<i class="fa-solid fa-circle-exclamation fa-beat"></i> The city does not exist';
+        errorMessage.classList.add("fade-in");
+        errorMessage.classList.remove("d-none");
+        // Time to fade
+        setTimeout(() => {
+          errorMessage.classList.add("active");
+        }, 25);
       }
     } catch (error) {
       console.error("Error fetching weather data:", error);
