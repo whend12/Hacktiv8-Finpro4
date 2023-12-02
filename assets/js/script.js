@@ -40,6 +40,7 @@ document.addEventListener("DOMContentLoaded", function () {
     try {
       const response = await fetch(apiUrl);
       const data = await response.json();
+      const errorMessage = document.getElementById("error-msg");
       if (response.ok) {
         updateWeatherUI(data);
         updateDayDateAndTime();
@@ -49,9 +50,11 @@ document.addEventListener("DOMContentLoaded", function () {
         daysList.classList.remove("d-none");
         daysList.classList.add("visible");
         // done
+        // apabila data ada hapus class
+        errorMessage.classList.remove("fade-in", "active");
+        errorMessage.classList.add("d-none");
       } else {
         updateWeatherUI({});
-        var errorMessage = document.getElementById("error-msg");
         errorMessage.innerHTML =
           '<i class="fa-solid fa-circle-exclamation fa-beat"></i> The city does not exist';
         errorMessage.classList.add("fade-in");
@@ -59,7 +62,7 @@ document.addEventListener("DOMContentLoaded", function () {
         // Time to fade
         setTimeout(() => {
           errorMessage.classList.add("active");
-        }, 25);
+        }, 10);
       }
     } catch (error) {
       console.error("Error fetching weather data:", error);
