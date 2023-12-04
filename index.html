@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Weather Forecast Website</title>
+    <!-- font awesome -->
+    <script
+      src="https://kit.fontawesome.com/35dd348907.js"
+      crossorigin="anonymous"
+    ></script>
+    <!-- icons website -->
+    <link
+      rel="shortcut icon"
+      href="assets/img/icon/wind.png"
+      type="image/x-icon"
+    />
+    <!-- Template Stylesheet -->
+    <link href="assets/css/style.css" rel="stylesheet" />
+    <!-- Bootstrap Stylesheet -->
+    <link href="assets/css/bootstrap.min.css" rel="stylesheet" />
+    <!-- AOS Library -->
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+  </head>
+
+  <body>
+    <!-- style background -->
+    <section class="weather-app">
+      <div class="container p-5">
+        <div
+          class="row wether"
+          data-aos="fade-zoom-in"
+          data-aos-easing="ease-in-back"
+          data-aos-delay="300"
+          data-aos-offset="0"
+        >
+          <div class="col text-center">
+            <h1 href="#" data-text="Weather Forecast">Weather Forecast</h1>
+            <h2 class="day">Friday</h2>
+            <div class="d-flex align-items-center justify-content-center">
+              <p class="time">04.00</p>
+              <p class="date">24 November 2023</p>
+            </div>
+            <!-- 5 day forecast -->
+            <div
+              class="col list_content d-flex justify-content-center align-items-center"
+            >
+              <ul class="days d-none row flex-sm-wrap mt-1 p-2">
+                <li class="col day-1">
+                  <div class="day_name"></div>
+                  <div class="day_icon"></div>
+                  <div class="day_temps"></div>
+                </li>
+
+                <li class="col day-2">
+                  <div class="day_name"></div>
+                  <div class="day_icon"></div>
+                  <div class="day_temps"></div>
+                </li>
+
+                <li class="col day-3">
+                  <div class="day_name"></div>
+                  <div class="day_icon"></div>
+                  <div class="day_temps"></div>
+                </li>
+                <li class="col day-4">
+                  <div class="day_name"></div>
+                  <div class="day_icon"></div>
+                  <div class="day_temps"></div>
+                </li>
+                <li class="col day-5">
+                  <div class="day_name"></div>
+                  <div class="day_icon"></div>
+                  <div class="day_temps"></div>
+                </li>
+              </ul>
+            </div>
+          </div>
+          <!-- 5 Days Forecast End -->
+          <div class="col">
+            <div class="content_section position-relative">
+              <div class="input-group mb-3">
+                <input
+                  type="search"
+                  class="form-control p-3 search"
+                  placeholder="Search Location"
+                />
+                <button
+                  class="btn btn-outline-secondary p-3 fw-semibold"
+                  type="submit"
+                  id="button-search"
+                >
+                  SEARCH
+                </button>
+              </div>
+              <span class="d-none" id="error-msg"></span>
+
+              <div class="day_info py-2">
+                <div class="content">
+                  <p class="title">City</p>
+                  <span class="city"></span>
+                </div>
+                <div class="content">
+                  <p class="title">Conditions</p>
+                  <span class="condition"></span>
+                </div>
+                <div class="content">
+                  <p class="title">Temperature</p>
+                  <span class="temp"></span>
+                </div>
+                <div class="content">
+                  <p class="title">Wind Speed</p>
+                  <span class="wind"></span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- akhir style background -->
+
+    <!-- Template AOS Animation -->
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+    <script>
+      AOS.init({
+        once: true,
+        duration: 1500,
+      });
+    </script>
+    <!-- Template Bootstrap JS -->
+    <script src="assets/js/bootstrap.min.js"></script>
+    <!-- Template JS -->
+    <script src="assets/js/script.js"></script>
+  </body>
+</html>
