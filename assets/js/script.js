@@ -12,6 +12,7 @@ document.addEventListener("DOMContentLoaded", function () {
   const dayTemps = document.querySelectorAll(".day_temps");
   const dayNames = document.querySelectorAll(".day_name");
   const messageError = document.querySelector("#error-msg");
+  let searchPerformed = false;
 
   const defaultCity = "Denpasar";
   searchInput.value = "";
@@ -24,6 +25,8 @@ document.addEventListener("DOMContentLoaded", function () {
     if (location.trim() !== "") {
       getWeatherData(location).then(() => {
         getWeatherForecast(location);
+        searchPerformed = true;
+        activateWeatherLink();
       });
       searchInput.value = "";
       clearErrorAndForecast();
@@ -32,6 +35,26 @@ document.addEventListener("DOMContentLoaded", function () {
       clearWeatherUI();
     }
   });
+
+  function activateWeatherLink() {
+    if (searchPerformed) {
+      const weatherLink = document.getElementById("weatherLink");
+      weatherLink.addEventListener("click", redirectToWeatherSite);
+    }
+  }
+
+  // function redirectToWeatherSite() {
+  //   const searchInput = document.querySelector(".search");
+  //   const location = searchInput.value.trim(); // Trim untuk menghapus spasi di awal dan akhir string
+
+  //   if (location !== "") {
+  //     const weatherURL = `https://weather.com/weather/tenday/l/${location}`;
+
+  //     window.open(weatherURL, "_blank");
+  //   } else {
+  //     alert("Please enter a location to search for weather details.");
+  //   }
+  // }
 
   async function getWeatherData(location) {
     const apiKey = "c948d01ae05d6e908757ceeb70784246";
@@ -62,7 +85,7 @@ document.addEventListener("DOMContentLoaded", function () {
         // Time to fade
         setTimeout(() => {
           errorMessage.classList.add("active");
-        }, 10);
+        }, 0);
       }
     } catch (error) {
       console.error("Error fetching weather data:", error);
